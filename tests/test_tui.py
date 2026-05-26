@@ -1,6 +1,7 @@
 from pathlib import Path
 
 import pytest
+from textual.containers import VerticalScroll
 
 from trace_viewer.parsers.codex import parse_codex_trace
 from trace_viewer.tui.app import TraceViewerApp
@@ -18,6 +19,17 @@ async def test_tui_populates_navigator_from_session() -> None:
         assert len(event_list.children) == len(session.events)
         reader = pilot.app.query_one("#reader")
         assert "Inspect the repository." in str(reader.renderable)
+
+
+@pytest.mark.asyncio
+async def test_tui_reader_is_inside_scrollable_container() -> None:
+    session = parse_codex_trace(FIXTURES / "codex_session.jsonl")
+    app = TraceViewerApp(session)
+
+    async with app.run_test() as pilot:
+        scroll = pilot.app.query_one("#reader-scroll", VerticalScroll)
+        reader = pilot.app.query_one("#reader")
+        assert reader.parent is scroll
 
 
 @pytest.mark.asyncio

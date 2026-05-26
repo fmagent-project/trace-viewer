@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from textual.app import App, ComposeResult
-from textual.containers import Horizontal
+from textual.containers import Horizontal, VerticalScroll
 from textual.widgets import Footer, Header, Input, ListItem, ListView, Static
 
 from trace_viewer.export.markdown import render_markdown
@@ -28,7 +28,8 @@ class TraceViewerApp(App[None]):
     CSS = """
     Horizontal { height: 1fr; }
     #event-list { width: 34%; border: solid $accent; }
-    #reader { width: 66%; border: solid $primary; padding: 1; }
+    #reader-scroll { width: 66%; border: solid $primary; }
+    #reader { padding: 1; width: 100%; }
     #search-input { height: 3; }
     """
     BINDINGS = [
@@ -48,7 +49,8 @@ class TraceViewerApp(App[None]):
         with Horizontal():
             items = [EventListItem(event) for event in self.session.events]
             yield ListView(*items, id="event-list")
-            yield Reader()
+            with VerticalScroll(id="reader-scroll"):
+                yield Reader()
         yield Footer()
 
     def on_mount(self) -> None:
@@ -99,6 +101,7 @@ class TraceViewerApp(App[None]):
             self._show_event(events[0])
         else:
             self.query_one("#reader", Static).update("No matching events.")
+            self.query_one("#reader-scroll", VerticalScroll).scroll_home(animate=False)
 
     def _show_event(self, event: TraceEvent) -> None:
         reader = self.query_one("#reader", Static)
@@ -108,3 +111,4 @@ class TraceViewerApp(App[None]):
             content = "\n".join(lines[: self.max_output_lines])
             content += f"\n\n[Output truncated to {self.max_output_lines} line(s).]"
         reader.update(f"{event.title}\n\n{content}")
+        self.query_one("#reader-scroll", VerticalScroll).scroll_home(animate=False)
