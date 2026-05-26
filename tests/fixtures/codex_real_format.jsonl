@@ -1,0 +1,8 @@
+{"timestamp":"2026-05-26T08:14:38.246Z","type":"session_meta","payload":{"id":"real-session","cwd":"/tmp/project"}}
+{"timestamp":"2026-05-26T08:14:38.250Z","type":"event_msg","payload":{"type":"task_started","turn_id":"turn-1"}}
+{"timestamp":"2026-05-26T08:14:38.260Z","type":"event_msg","payload":{"type":"user_message","message":"Build a trace viewer"}}
+{"timestamp":"2026-05-26T08:14:45.611Z","type":"event_msg","payload":{"type":"agent_message","message":"I will inspect the repo.","phase":"commentary"}}
+{"timestamp":"2026-05-26T08:14:45.614Z","type":"response_item","payload":{"type":"function_call","name":"exec_command","arguments":"{\"cmd\":\"rg --files\",\"workdir\":\"/tmp/project\"}","call_id":"call-1"}}
+{"timestamp":"2026-05-26T08:14:45.676Z","type":"response_item","payload":{"type":"function_call_output","call_id":"call-1","output":"Chunk ID: abc\nProcess exited with code 0\nOutput:\nREADME.md\n"}}
+{"timestamp":"2026-05-26T08:14:46.000Z","type":"response_item","payload":{"type":"message","role":"assistant","content":[{"type":"output_text","text":"Done."}],"phase":"final_answer"}}
+{"timestamp":"2026-05-26T08:14:46.010Z","type":"event_msg","payload":{"type":"token_count","info":{"total_token_usage":{"total_tokens":123}}}}
