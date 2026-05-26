@@ -1,0 +1,5 @@
+{"timestamp":"2026-05-26T08:00:00Z","type":"message","role":"user","content":"Inspect the repository."}
+{"timestamp":"2026-05-26T08:00:01Z","type":"message","role":"assistant","content":"I will list the files first."}
+{"timestamp":"2026-05-26T08:00:02Z","type":"tool_call","tool":"shell","arguments":{"cmd":"rg --files"}}
+{"timestamp":"2026-05-26T08:00:03Z","type":"tool_result","tool":"shell","status":"success","exit_code":0,"output":"README.md\npyproject.toml\nsrc/trace_viewer/cli.py\n"}
+{"timestamp":"2026-05-26T08:00:04Z","type":"message","role":"assistant","content":"The project has a Python package layout."}
