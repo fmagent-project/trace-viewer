@@ -7,7 +7,7 @@ from pathlib import Path
 from trace_viewer.discovery import DiscoveryError, discover_traces
 from trace_viewer.export.html import render_html
 from trace_viewer.export.markdown import render_markdown
-from trace_viewer.parsers.codex import ParseError, parse_codex_trace
+from trace_viewer.parsers import ParseError, parse_trace
 from trace_viewer.tui.app import TraceViewerApp
 
 
@@ -59,7 +59,7 @@ def main(argv: list[str] | None = None) -> int:
 
 def _run_export(args: argparse.Namespace) -> int:
     traces = discover_traces(args.path)
-    session = parse_codex_trace(traces[0], strict=args.strict)
+    session = parse_trace(traces[0], strict=args.strict)
     if args.format == "md":
         rendered = render_markdown(session, max_output_lines=args.max_output_lines)
     elif args.format == "html":
@@ -73,7 +73,7 @@ def _run_export(args: argparse.Namespace) -> int:
 def _run_tui(args: argparse.Namespace) -> int:
     traces = discover_traces(args.path)
     selected = _select_trace(traces)
-    session = parse_codex_trace(selected, strict=args.strict)
+    session = parse_trace(selected, strict=args.strict)
     TraceViewerApp(session, max_output_lines=args.max_output_lines).run()
     return 0
 

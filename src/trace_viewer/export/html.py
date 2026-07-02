@@ -13,7 +13,7 @@ def render_html(session: TraceSession, *, max_output_lines: int = 80) -> str:
         '<html lang="en">',
         "<head>",
         '<meta charset="utf-8">',
-        f"<title>Codex Trace: {html.escape(session.session_id)}</title>",
+        f"<title>Trace: {html.escape(session.session_id)}</title>",
         "<style>"
         "body{font-family:system-ui,sans-serif;line-height:1.45;max-width:980px;"
         "margin:2rem auto;padding:0 1rem}"
@@ -22,7 +22,7 @@ def render_html(session: TraceSession, *, max_output_lines: int = 80) -> str:
         "</style>",
         "</head>",
         "<body>",
-        f"<h1>Codex Trace: {html.escape(session.session_id)}</h1>",
+        f"<h1>Trace: {html.escape(session.session_id)}</h1>",
         "<h2>Metadata</h2>",
         "<ul>",
         f"<li>Source: <code>{html.escape(str(session.source_path))}</code></li>",

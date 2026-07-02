@@ -8,7 +8,7 @@ from trace_viewer.models import EventKind, TraceSession
 
 def render_markdown(session: TraceSession, *, max_output_lines: int = 80) -> str:
     parts: list[str] = [
-        f"# Codex Trace: {session.session_id}",
+        f"# Trace: {session.session_id}",
         "",
         "## Metadata",
         "",

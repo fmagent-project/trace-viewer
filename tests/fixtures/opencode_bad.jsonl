@@ -1,0 +1,3 @@
+{"_kind":"request","_id":1,"_ts":"2026-06-28T13:58:04.690Z","messages":[{"role":"user","content":"hi"}]}
+{not valid json
+{"_kind":"telemetry","_id":2,"_ts":"2026-06-28T13:58:05.690Z"}

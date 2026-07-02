@@ -58,4 +58,4 @@ async def test_tui_export_action_writes_markdown(tmp_path: Path) -> None:
 
     output = tmp_path / "session.md"
     assert output.exists()
-    assert output.read_text(encoding="utf-8").startswith("# Codex Trace: session")
+    assert output.read_text(encoding="utf-8").startswith("# Trace: session")

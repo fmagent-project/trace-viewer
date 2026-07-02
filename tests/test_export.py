@@ -12,7 +12,7 @@ def test_render_markdown_exports_readable_report_with_details() -> None:
 
     markdown = render_markdown(session, max_output_lines=1)
 
-    assert markdown.startswith("# Codex Trace: codex_session")
+    assert markdown.startswith("# Trace: codex_session")
     assert "## Transcript" in markdown
     assert "### User" in markdown
     assert "Inspect the repository." in markdown
@@ -37,7 +37,7 @@ def test_render_html_escapes_content_and_uses_details() -> None:
     html = render_html(session, max_output_lines=1)
 
     assert "<!doctype html>" in html
-    assert "<h1>Codex Trace: codex_session</h1>" in html
+    assert "<h1>Trace: codex_session</h1>" in html
     assert "&lt;unsafe&gt;" in html
     assert "<details>" in html
     assert "Output truncated" in html
